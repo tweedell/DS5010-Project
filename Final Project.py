@@ -9,7 +9,6 @@ import os
 import numpy as np
 
 
-
 def translate(x):
     y = x + 3
     return y
