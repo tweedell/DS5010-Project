@@ -30,7 +30,7 @@ def txt_to_seq(file):
     # verify that only letters for nucleotides are present in sequence
     allowed = ('A', 'T', 'C', 'G', 'U')
     if not all(char in allowed for char in seq):
-        print("A non alphabet was found in the sequence!")
+        print("An unknown nucleotide item was found in the sequence!")
         return None
 
     # determine if sequence represents DNA or RNA depending on precense of 'T'
@@ -39,6 +39,8 @@ def txt_to_seq(file):
         seq_type = 'DNA'
     elif 'U' in seq:
         seq_type = 'RNA'
+    else:
+        seq_type = 'Unknown'
 
     # Print import success statement
     print("Successfully imported %s sequence." % seq_type)
@@ -49,9 +51,11 @@ def txt_to_seq(file):
 # function to
 def nucleo_freq(x):
     """
-
-    param x:
-    returns:
+    function to count the number of instances of each specific nucleotide in an
+    imported sequence
+    param x: str containing nucleotide sequence
+    returns: dictionary of counts with keys as the nucleotide indicator and the
+    value is the count
     """
 
     iterable = iter(x)
@@ -70,14 +74,4 @@ def nucleo_freq(x):
     return count_dict
 
 
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-
-
+#if __name__ == "__main__":
