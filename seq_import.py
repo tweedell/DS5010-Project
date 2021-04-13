@@ -6,6 +6,7 @@ Created on Sat Apr 10 09:25:15 2021
 """
 
 import os
+import string
 import seq_import_tests as sit
 
 # function to import and format text string from text files
@@ -13,7 +14,7 @@ def txt_to_seq(file):
     """
     A function to read in text file of nucleotide sequences and perform
     preliminary checks
-    param file: A string containing the file name
+    param file: A string containing the file name in current directory
     returns: single item list containing nucleotide sequence
     """
     # check if file name provided is string. Exit with warning if not.
@@ -23,27 +24,60 @@ def txt_to_seq(file):
 
     # open file, extract first line of text, save line, and close file
     with open(file, "rt") as my_file:
-        my_lines = my_file.read()
+        seq = my_file.readlines()
+        seq = seq[0]
 
-    #check if any non-character items in sequence
+    # verify that only letters for nucleotides are present in sequence
+    allowed = ('A', 'T', 'C', 'G', 'U')
+    if not all(char in allowed for char in seq):
+        print("A non alphabet was found in the sequence!")
+        return None
 
     # determine if sequence represents DNA or RNA depending on precense of 'T'
     # or 'U' (DNA and RNA, respectively)
-    if 'T' is in seq:
+    if 'T' in seq:
         seq_type = 'DNA'
-    elif 'U' is in seq:
+    elif 'U' in seq:
         seq_type = 'RNA'
 
     # Print import success statement
-    print("Successfully import %s sequence." % seq_type)
+    print("Successfully imported %s sequence." % seq_type)
 
-    # return single element list containing character sequence
+    # return single string containing nucleotide sequence
     return seq
 
 # function to
-def nucleo_freq(char_seq):
+def nucleo_freq(x):
     """
 
-    param :
+    param x:
     returns:
     """
+
+    iterable = iter(x)
+    count_dict = dict()
+
+    for item in iterable:
+
+        if item not in count_dict:
+
+            count_dict[item] = 1
+
+        elif item in count_dict:
+
+            count_dict[item] += 1
+
+    return count_dict
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+
+
