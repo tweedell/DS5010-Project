@@ -48,7 +48,7 @@ def txt_to_seq(file):
     # return single string containing nucleotide sequence
     return seq
 
-# function to
+# function to count the number of nucleotides present in given sequence.
 def nucleo_freq(x):
     """
     function to count the number of instances of each specific nucleotide in an
@@ -75,3 +75,5 @@ def nucleo_freq(x):
 
 
 #if __name__ == "__main__":
+
+# make sure they're all caps
