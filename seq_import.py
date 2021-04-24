@@ -5,10 +5,6 @@ Created on Sat Apr 10 09:25:15 2021
 @author: Andrew Tweedell, Ameya Gokhale
 """
 
-import os
-import string
-import seq_import_tests as sit
-
 # function to import and format text string from text files
 def txt_to_seq(file):
     """
@@ -24,8 +20,7 @@ def txt_to_seq(file):
 
     # open file, extract first line of text, save line, and close file
     with open(file, "rt") as my_file:
-        seq = my_file.readlines()
-        seq = seq[0]
+        seq = my_file.readlines()[0]
 
     # verify that only letters for nucleotides are present in sequence
     allowed = ('A', 'T', 'C', 'G', 'U')
@@ -51,8 +46,8 @@ def txt_to_seq(file):
 # function to count the number of nucleotides present in given sequence.
 def nucleo_freq(x):
     """
-    function to count the number of instances of each specific nucleotide in an
-    imported sequence
+    exploratory helper function to count the number of instances of each specific
+    nucleotide in an imported sequence
     param x: str containing nucleotide sequence
     returns: dictionary of counts with keys as the nucleotide indicator and the
     value is the count
@@ -72,8 +67,3 @@ def nucleo_freq(x):
             count_dict[item] += 1
 
     return count_dict
-
-
-#if __name__ == "__main__":
-
-# make sure they're all caps
