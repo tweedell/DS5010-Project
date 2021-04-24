@@ -86,7 +86,7 @@ class Proteins(NucleotideChain):
 		#split the nucleotide sequence into triplets based on the location of the start codon
 		start_location = super().find_start()
 
-		if start_location == -1:
+		if start_location == None:
 			return None
 
 		else:
