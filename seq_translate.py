@@ -14,6 +14,21 @@ class NucleotideChain:
 		"""
 		self.data = data
 
+	def nucleo_freq(self):
+		"""
+		counts the number of instances of each specific nucleotide in the sequence
+		"""
+		count_dict = dict()
+
+		for item in iter(self.data):
+
+			if item not in count_dict:
+				count_dict[item] = 1
+			elif item in count_dict:
+				count_dict[item] += 1
+
+		return count_dict
+
 	def find_start(self):
 		"""
 		find the position of the start codon to know where translation starts
@@ -29,7 +44,7 @@ class NucleotideChain:
 			return start_index
 
 		elif self.seq_type() == 'DNA':
-			print('Sequence is DNA. Need RNA sequence.')
+			print('Sequence is DNA. Need RNA sequence to find start codon.')
 			return None
 
 	def seq_type(self):
@@ -69,7 +84,7 @@ class Proteins(NucleotideChain):
 	nucleotide sequence
 	returns: list with codons
 	"""
-	def __init__(self, data=None):
+	def __init__(self, data = None):
 		"""initialize the chain with the nucleotide sequence"""
 		self.data = data
 
@@ -81,10 +96,11 @@ class Proteins(NucleotideChain):
 
 		#Transcribe the sequence to RNA if it is DNA"
 		if super().seq_type() == 'DNA':
-			super().transcribe_sequence()
+			print('Transcribing DNA to RNA first.')
+			self.data = super().transcribe_sequence()
 
 		#split the nucleotide sequence into triplets based on the location of the start codon
-		start_location = super().find_start()
+		start_location = self.find_start()
 
 		if start_location == None:
 			return None
@@ -95,7 +111,6 @@ class Proteins(NucleotideChain):
 			for i in range(0, len(new_sequence), 3):
 				codons.append(new_sequence[i:3+i])
 			return codons
-
 
 	def protein_sequence(self):
 		"""
@@ -116,11 +131,12 @@ class Proteins(NucleotideChain):
 
 		if codon_list != None:
 			protein_list=[]
+
 			for i in codon_list:
 				protein_list=protein_list+[amino_acid_dict.get(i)]
-			print(protein_list)
+
+			return protein_list
 
 		else:
 			print("This gene does not translate into a protein!")
-
-
+			return None

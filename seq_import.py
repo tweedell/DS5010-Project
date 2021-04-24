@@ -42,28 +42,3 @@ def txt_to_seq(file):
 
     # return single string containing nucleotide sequence
     return seq
-
-# function to count the number of nucleotides present in given sequence.
-def nucleo_freq(x):
-    """
-    exploratory helper function to count the number of instances of each specific
-    nucleotide in an imported sequence
-    param x: str containing nucleotide sequence
-    returns: dictionary of counts with keys as the nucleotide indicator and the
-    value is the count
-    """
-
-    iterable = iter(x)
-    count_dict = dict()
-
-    for item in iterable:
-
-        if item not in count_dict:
-
-            count_dict[item] = 1
-
-        elif item in count_dict:
-
-            count_dict[item] += 1
-
-    return count_dict
