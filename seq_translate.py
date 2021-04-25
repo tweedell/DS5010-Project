@@ -17,6 +17,7 @@ class NucleotideChain:
 	def nucleo_freq(self):
 		"""
 		counts the number of instances of each specific nucleotide in the sequence
+		returns: dictionary containing frequency
 		"""
 		count_dict = dict()
 
@@ -63,7 +64,7 @@ class NucleotideChain:
 	def transcribe_sequence(self):
 		"""
 		for transcribing to RNA if the input is DNA
-		returns: no return value
+		returns: string containing translated nucleic acids or None
 		"""
 		if self.seq_type() == 'DNA':
 			translate_dict = {'T' : 'A', 'A' : 'U', 'C' : 'G', 'G' : 'C'}
@@ -82,7 +83,6 @@ class Proteins(NucleotideChain):
 	"""
 	A class that represents the subsequent amino acid chain formed from the initial
 	nucleotide sequence
-	returns: list with codons
 	"""
 	def __init__(self, data = None):
 		"""initialize the chain with the nucleotide sequence"""
@@ -115,7 +115,7 @@ class Proteins(NucleotideChain):
 	def protein_sequence(self):
 		"""
 		convert the list of codons to their respective amino acids
-		returns: no return value
+		returns: list containing protein abbreviations
 		"""
 
 		codon_list = self.codon()
